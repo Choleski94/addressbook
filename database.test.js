@@ -1,7 +1,7 @@
 const db = require('./database');
 
 beforeAll(async () => {
-	await db.swquilize.sync();
+	await db.sequelize.sync();
 });
 
 test('create contact', async () => {
@@ -11,12 +11,12 @@ test('create contact', async () => {
 		firstName: 'John',
 		lastName: 'Doe'
 	});
-	expect(person.id).toEqual(1);
+	expect(contact.id).toEqual(1);
 });
 
 test('get contact', async () => {
 	expect.assertions(2);
-	const contact = await db.Contact.findByPK(1);
+	const contact = await db.Contact.findByPk(1);
 	expect(contact.firstName).toEqual('John');
 	expect(contact.lastName).toEqual('Doe');
 });
@@ -28,7 +28,7 @@ test('delete contact', async () => {
 			id: 1,
 		}
 	});
-	const contact = await db.Contact.getByPk(1);
+	const contact = await db.Contact.findByPk(1);
 	expect(contact).toBeNull();
 });
 
