@@ -1,0 +1,10 @@
+1
+node_modules
+dist
+build
+npm-debug.log
+.DS_Store
+yarn.lock
+*.swp
+.env
+!types.d.ts
