@@ -2,12 +2,8 @@ const express = require('express');
 const router = express.Router();
 const db = require('./../database');
 
-var express = require('express');
-var router = express.Router();
-var db = require('../database');
-
 router.get("/all", function(req, res) {
-	db.Person.findAll()
+	db.Member.findAll()
 		.then( persons => {
 			res.status(200).send(JSON.stringify(persons));
 		})
@@ -17,7 +13,7 @@ router.get("/all", function(req, res) {
 });
 
 router.get("/:id", function(req, res) {
-	db.Person.findByPk(req.params.id)
+	db.Member.findByPk(req.params.id)
 		.then( person => {
 			res.status(200).send(JSON.stringify(person));
 		})
@@ -27,7 +23,7 @@ router.get("/:id", function(req, res) {
 });
 
 router.put("/", function(req, res) {
-	db.Person.create({
+	db.Member.create({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		id: req.body.id
@@ -41,7 +37,7 @@ router.put("/", function(req, res) {
 });
 
 router.delete("/:id", function(req, res) {
-	db.Person.destroy({
+	db.Member.destroy({
 		where: {
 			id: req.params.id
 		}
