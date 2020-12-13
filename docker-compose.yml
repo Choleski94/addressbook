@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  addressbook-db:
+  postgres:
     image: postgres
     environment:
       POSTGRES_USER: postgres
@@ -8,7 +8,7 @@ services:
     ports: 
       - '5432:5432'
     volumes:
-      - addressbook-blk:/var/lib/postgresql/data
+      - addressbook-db:/var/lib/postgresql/data
 
   addressbook:
     build:
@@ -19,9 +19,9 @@ services:
       DB_PASSWORD: postgres
       DB_HOST: postgres
     depends_on:
-      - addressbook-db
+      - postgres
     ports:
       - '3000:3000'
-
+        
 volumes:
-  addressbook-blk:
+  addressbook-db:
