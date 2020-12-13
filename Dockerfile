@@ -5,7 +5,7 @@ WORKDIR /opt/app
 
 RUN adduser --disabled-password app
 
-COPY addressbook/ .
+COPY . .
 RUN chown -R app:app /opt/app
 
 USER app
